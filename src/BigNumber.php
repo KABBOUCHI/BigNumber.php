@@ -163,7 +163,7 @@ class BigNumber implements \JsonSerializable
             return $parts[0];
         }
 
-        return (string) $this->value;
+        return (string) $this->value->toFloat();
     }
 
     public function toString(): string
