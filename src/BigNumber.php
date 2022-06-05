@@ -196,7 +196,7 @@ class BigNumber implements \JsonSerializable
         return number_format(floatval($value), $decimalPlaces);
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
        return $this->toString();
     }
