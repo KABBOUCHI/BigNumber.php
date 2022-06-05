@@ -157,6 +157,10 @@ class BigNumber implements \JsonSerializable
 
     public function __toString(): string
     {
+        if (!$this->value->hasNonZeroFractionalPart()) {
+            return (string) $this->value->toInt();
+        }
+
         return (string) $this->value->toFloat();
     }
 
@@ -193,11 +197,11 @@ class BigNumber implements \JsonSerializable
             return $value;
         }
 
-        return number_format(floatval($value), $decimalPlaces);
+        return number_format(floatval($value), $decimalPlaces, '.', '');
     }
 
     public function jsonSerialize(): string
     {
-       return $this->toString();
+        return $this->toString();
     }
 }

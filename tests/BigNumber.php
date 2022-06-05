@@ -74,3 +74,12 @@ it('toPrecision', function () {
         ->and(BigNumber::of(3.456)->toPrecision(1))->toEqual('3')
     ->and(BigNumber::of(3.456)->toPrecision(2))->toEqual('3.5');
 });
+
+it('pow', function () {
+    expect(
+        BigNumber::of(1)
+            ->div(5)
+            ->times(BigNumber::of(10)->pow(18))
+            ->toString()
+    )->toEqual('200000000000000000');
+});
