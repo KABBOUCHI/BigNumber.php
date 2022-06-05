@@ -4,7 +4,7 @@ namespace KABBOUCHI;
 
 use Brick\Math\BigDecimal;
 
-class BigNumber
+class BigNumber implements \JsonSerializable
 {
     private BigDecimal $value;
     private int $scale = 18;
@@ -194,5 +194,10 @@ class BigNumber
         }
 
         return number_format(floatval($value), $decimalPlaces);
+    }
+
+    public function jsonSerialize()
+    {
+       return $this->toString();
     }
 }
