@@ -6,8 +6,8 @@ use Brick\Math\BigDecimal;
 
 class BigNumber implements \JsonSerializable
 {
-    private BigDecimal $value;
-    private int $scale = 18;
+    public BigDecimal $value;
+    private int $scale = 32;
 
     final public function __construct(string|int|float|BigNumber $value)
     {
@@ -158,10 +158,12 @@ class BigNumber implements \JsonSerializable
     public function __toString(): string
     {
         if (!$this->value->hasNonZeroFractionalPart()) {
-            return (string) $this->value->toInt();
+            $parts = explode(".", (string) $this->value);
+
+            return $parts[0];
         }
 
-        return (string) $this->value->toFloat();
+        return (string) $this->value;
     }
 
     public function toString(): string
