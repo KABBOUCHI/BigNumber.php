@@ -25,6 +25,11 @@ class BigNumber implements \JsonSerializable
         return new static($value);
     }
 
+    public static function from(string|int|float|BigNumber $value): self
+    {
+        return new static($value);
+    }
+
     public function plus(string|int|float|BigNumber $value): self
     {
         return new static(BigDecimal::sum($this->value, (string) $value));
@@ -169,6 +174,16 @@ class BigNumber implements \JsonSerializable
     public function toString(): string
     {
         return $this->__toString();
+    }
+
+    public function toHex(): string
+    {
+        return $this->toHexString();
+    }
+
+    public function toHexString(): string
+    {
+        return '0x'.dechex($this->value->toInt());
     }
 
     public function toNumber(): int|float

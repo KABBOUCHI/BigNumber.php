@@ -83,3 +83,9 @@ it('pow', function () {
             ->toString()
     )->toEqual('200000000000000000');
 });
+
+it('toHex', function () {
+    expect(BigNumber::of(1)->toHex())->toEqual('0x1')
+        ->and(BigNumber::of(12)->toHex())->toEqual('0xc')
+        ->and(BigNumber::of(123123123123)->toHex())->toEqual('0x1caab5c3b3');
+});
